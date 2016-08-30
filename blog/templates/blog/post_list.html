@@ -1,38 +1,13 @@
-<!--<html>
-    <head>
-        <title>Timbira's blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Timbira's Blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {{ posts }}
-            <p>published: 29.08.2016, 11:20</p>
-            <h2><a href="">Porque bacon is good?</a></h2>
-            <p>Pq é, oras essa.</p>
-        {{ posts }}
-
-        {{ posts }}
-            <p>published: 29.08.2016, 11:21</p>
-            <h2><a href="">Coisas Inexplicavéis</a></h2>
-            <p>1º) 1 libertadores, 2 mundiais;
-	       2º) Vasco;
-               3º) Mundial de 51 das peppas; </p>
-        {{ posts }}
-    </body>
-</html>-->
-<html>    
-
-    <div>
-    	<h1><a href="/">Timbira's blog</a></h1>
-    </div>
-
+{% block content %}
     {% for post in posts %}
-	<div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
-</html>
+{% endblock content %}
